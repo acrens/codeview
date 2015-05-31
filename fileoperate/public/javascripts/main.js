@@ -220,7 +220,7 @@ function init() {
         ,"Shift-Ctrl-\\": function(e){  // 代码块注释取消
             e.blockComment(false);
         }
-        ,"Ctrl-F": function(e){   // 代码格式化
+        ,"Shift-Ctrl-F": function(e){   // 代码格式化
             e.formatCode();
         },"Ctrl-R": function(e) {   // 代码运行快捷
             var s = setting();
@@ -421,7 +421,11 @@ $(function(){
     // 下载模板文件
     $('#downCode').on('click', function() {
         var code = cm.html.getValue().trim() || '';
-        window.location.href = '/download?code=' + encodeURIComponent(code);
+        if(code.trim()) {
+            window.location.href = '/download?code=' + encodeURIComponent(code);
+        } else {
+            alert('编辑框内不能为空');
+        }
     });
 
     // 文件树切换效果

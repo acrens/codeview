@@ -35,7 +35,9 @@
     <input id="pre" name="view" type="checkbox" checked="checked" value="preview_window" />
     <label for="pre" class="pr10 pointer">预览</label>
 
-    <label id="helpInfo" class="help">F11(全屏显示选中的编辑器)</label>
+    <label id="helpInfo" class="help">F11(全屏显示选中的编辑器)
+        <input type="button" class="username j_login" value="<%= list.username||'登录' %>" />
+    </label>
 </div>
 
 <div class="main" id="main">
@@ -46,7 +48,7 @@
         <div class="file_tree">
             <% for(var i in list) { %>
             <ul>
-                <% if(list[i]['title']) {%><li><%=list[i]['title']%></li><% } %>
+                <% if(list[i]['title']) {%><li class="j_filename filename" data-index="0"><%=list[i]['title']%></li><% } %>
 
                 <% if(list[i]['filenames']) { %>
                     <% for(var j in list[i]['filenames']) { %>
@@ -69,7 +71,7 @@
             <div class="sub_banner bc3A3937">
                 <span>2-编辑内容</span>
 					<span class="fr pr10">
-						<input id="formatCode" class="btn mr10 j_format_code" type="button" value="格式化(Ctrl+F)" />
+						<input id="formatCode" class="btn mr10 j_format_code" type="button" value="格式化(Shift+F)" />
 					</span>
             </div>
             <div id="html_window" class="window">

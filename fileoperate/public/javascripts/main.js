@@ -220,7 +220,7 @@ function init() {
         ,"Shift-Ctrl-\\": function(e){  // 代码块注释取消
             e.blockComment(false);
         }
-        ,"Shift-Ctrl-F": function(e){   // 代码格式化
+        ,"Shift-F": function(e){   // 代码格式化
             e.formatCode();
         },"Ctrl-R": function(e) {   // 代码运行快捷
             var s = setting();
@@ -447,5 +447,49 @@ $(function(){
                 preview( cm.html.getValue());
             }
         });
+    });
+
+    $('.j_filename').on('click', function() {
+        var me = $(this);
+        var index = me.attr('data-index');
+        var siblings = me.siblings('li');
+
+        if(index == '0') {
+            siblings.slideUp(500);
+            me.attr({'data-index': '1'});
+        } else {
+            siblings.slideDown(500);
+            me.attr({'data-index': '0'});
+        }
+    });
+
+    var name = '';
+    $('.j_login').on('click', function() {
+    	var me = $(this);
+    	me.val()=='登录'?me.val(''):'';
+    	me.attr({'type': 'text'}).addClass('active');
+    	name = me.val();
+    }).on('blur', function() {
+    	var me = $(this);
+    	$.ajax({
+    		async: false,
+    		type: 'get',
+    		url: '/login',
+    		data: {
+    			username: me.val()
+    		},
+    		success: function(data) {
+    			if(!data) {
+    				me.focus();
+    			} else {
+    				var form = $('<form type="get" action="/"></form>');
+    				var input = $('<input type="hidden" name="username" value="' + data + '" />');
+    				form.append(input);
+    				form.submit();
+    			}
+    		}
+    	});
+
+    	// me.attr({'type': 'button'}).removeClass('active');
     });
 });

@@ -480,13 +480,12 @@ $(function(){
     		},
     		success: function(data) {
     			if(!data) {
-    				me.focus();
-    			} else {
-    				var form = $('<form type="get" action="/"></form>');
-    				var input = $('<input type="hidden" name="username" value="' + data + '" />');
-    				form.append(input);
-    				form.submit();
+    				data = '';
     			}
+    			var form = $('<form type="get" action="/"></form>');
+				var input = $('<input type="hidden" name="username" value="' + data + '" />');
+				form.append(input);
+				form.submit();
     		}
     	});
 

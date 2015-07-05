@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>林荫跑到</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    canvas#trails {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -250px 0 0 -250px;
+        width: 500px;
+        height: 500px;
+        border: 1px solid #ccc;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="trails"></canvas>
+    <script>
+    function createCanopyPath(context) {
+
+        // 绘制树冠
+        context.beginPath();
+
+        context.moveTo(90, 70);
+        context.lineTo(110, 50);
+        context.lineTo(100, 50);
+        context.lineTo(120, 30);
+        context.lineTo(110, 30);
+
+        // 树顶点
+        context.lineTo(125, 10);
+
+        context.lineTo(140, 30);
+        context.lineTo(130, 30);
+        context.lineTo(150, 50);
+        context.lineTo(140, 50);
+        context.lineTo(160, 70);
+
+        // 链接起点，闭合路径
+        context.closePath();
+    }
+
+    function drawTree(context) {
+        createCanopyPath(context);
+
+        // 描边设置
+        context.lineWidth = 4;
+        context.lineJoin = 'round';
+        context.strokeStyle = '#663300';
+        context.stroke();
+
+        // 填充区域
+        context.fillStyle = '#339900';
+        context.fill();
+
+        // 绘制树干
+        context.fillStyle = '#663300';
+        context.fillRect(120, 70, 10, 30);
+    }
+
+    function drawRoad(context) {
+        context.beginPath();
+        context.moveTo(0, 130);
+        context.quadraticCurveTo(130, 130, 220, 50);
+        context.quadraticCurveTo(240, 30, 300, 10);
+        context.strokeStyle = '#663300';
+        context.lineWidth = 5;
+        context.stroke();
+    }
+
+    function drawTrails() {
+        var canvas = document.getElementById('trails');
+        var context = canvas.getContext('2d');
+
+        // 第一棵树
+        context.save();
+        context.translate(120, 20);
+        context.scale(0.4, 0.4);
+        drawTree(context);
+        context.restore();
+
+        // 第二棵树
+        context.save();
+        context.translate(30, 40);
+        context.scale(0.6, 0.6);
+        drawTree(context);
+        context.restore();
+
+        // 第三棵树
+        context.save();
+        context.translate(80, 30);
+        context.scale(0.5, 0.5);
+        drawTree(context);
+        context.restore();
+
+        // 第四棵树
+        context.save();
+        context.translate(-30, 50);
+        context.scale(0.7, 0.7);
+        drawTree(context);
+        context.restore();
+
+        // 林荫小道
+        context.save();
+        context.translate(0, 0);
+        drawRoad(context);
+        context.restore();
+
+        // 第五棵树
+        context.save();
+        context.translate(120, 40);
+        context.scale(1.1, 1.1);
+        drawTree(context);
+        context.restore();
+    }
+
+    drawTrails();
+    </script>
+</body>
+
+</html>

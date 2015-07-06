@@ -1,8 +1,0 @@
-{
-    "name": "read_file_and_root",
-    "version": "0.0.1",
-    "dependencies": {
-        "express": "4.x",
-        "ejs": "^1.0.0"
-    }
-}

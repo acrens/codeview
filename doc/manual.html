@@ -69,7 +69,7 @@
 <section class=first id=overview>
     <h2 style="position: relative">
       User manual and reference guide
-      <span style="color: #888; font-size: 1rem; position: absolute; right: 0; bottom: 0">version 5.3.1</span>
+      <span style="color: #888; font-size: 1rem; position: absolute; right: 0; bottom: 0">version 5.4.1</span>
     </h2>
 
     <p>CodeMirror is a code-editor component that can be embedded in
@@ -181,7 +181,20 @@
 });</pre>
 
     <p>It will automatically load the modes that the mixed HTML mode
-    depends on (XML, JavaScript, and CSS).</p>
+    depends on (XML, JavaScript, and CSS). Do <em>not</em> use
+    RequireJS' <code>paths</code> option to configure the path to
+    CodeMirror, since it will break loading submodules through
+    relative paths. Use
+    the <a href="http://requirejs.org/docs/api.html#packages"><code>packages</code></a>
+    configuration option instead, as in:</p>
+
+    <pre data-lang=javascript>require.config({
+  packages: [{
+    name: "codemirror",
+    location: "../path/to/codemirror",
+    main: "lib/codemirror"
+  }]
+});</pre>
 
 </section>
 
@@ -2468,7 +2481,9 @@ editor.setOption("extraKeys", {
       is an array of strings or objects (the completions),
       and <code>from</code> and <code>to</code> give the start and end
       of the token that is being completed as <code>{line, ch}</code>
-      objects.</dd>
+      objects. An optional <code>selectedHint</code> property (an
+      integer) can be added to the completion object to control the
+      initially selected hint.</dd>
       <dd>If no hinting function is given, the addon will
       use <code>CodeMirror.hint.auto</code>, which
       calls <a href="#getHelpers"><code>getHelpers</code></a> with

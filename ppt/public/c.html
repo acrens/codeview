@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <title>控制器</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font: 14px/1.5 'Microsoft Yahei';
+    }
+    h1 {
+        text-align: center;
+    }
+    button {
+        width: 45%;
+        height: 100px;
+        margin: 2%;
+        padding: 0;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        outline: none;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>PPT操作</h1>
+    <button id="next">next</button>
+    <button id="prev">prev</button>
+
+    <script type="text/javascript" src="./javascripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./socket.io/socket.io.js"></script>
+    <script>
+    $(function() {
+        var socket = io.connect('http://localhost:3000');
+
+        $('#next').click(function() {
+            socket.emit('next', {
+                text: 'next'
+            });
+            console.log('next');
+        });
+
+        $('#prev').click(function() {
+            socket.emit('prev', {
+                text: 'prev'
+            });
+            console.log('prev');
+        });
+    });
+    </script>
+</body>
+
+</html>

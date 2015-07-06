@@ -1,0 +1,124 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #F9F5F5;
+    overflow: hidden;
+    font: bold 14px/14px cursive;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+input{
+    outline: none;
+}
+#content{
+    text-align: center;
+    font: bold 30px/40px cursive;
+    margin: 5% auto;
+    color: #595454;
+    animation:animations 2s ease-out .5s 1;
+    -webkit-animation:animations 2s ease-out .5s 1;
+    -moz-animation:animations 2s ease-out .5s 1;
+    -o-animation:animations 2s ease-out .5s 1;
+    -ms-animation:animations 2s ease-out .5s 1;
+}
+/*定义动画效果*/
+@-webkit-keyframes animations{
+    0%{-webkit-transform:translate(0);opacity:0;}
+    50%{-webkit-transform:translate(30px);opacity:1;}
+    70%{-webkit-transform:translate(35px);opacity:1;}
+    100%{-webkit-transform:translate(60px);opacity:0;}
+}
+@-moz-keyframes animations{
+    0%{-moz-transform:translate(0);opacity:0;}
+    50%{-moz-transform:translate(30px);opacity:1;}
+    70%{-moz-transform:translate(35px);opacity:1;}
+    100%{-moz-transform:translate(60px);opacity:0;}
+}
+@-o-keyframes animations{
+    0%{-o-transform:translate(0);opacity:0;}
+    50%{-o-transform:translate(30px);opacity:1;}
+    70%{-o-transform:translate(35px);opacity:1;}
+    100%{-o-transform:translate(60px);opacity:0;}
+}
+@-ms-keyframes animations{
+    0%{-ms-transform:translate(0);opacity:0;}
+    50%{-ms-transform:translate(30px);opacity:1;}
+    70%{-ms-transform:translate(35px);opacity:1;}
+    100%{-ms-transform:translate(60px);opacity:0;}
+}
+@keyframes animations{
+    0%{transform:translate(0);opacity:0;}
+    50%{transform:translate(30px);opacity:1;}
+    70%{transform:translate(35px);opacity:1;}
+    100%{transform:translate(60px);opacity:0;}
+}
+#login-panel{
+    width: 400px;
+    margin: 30px auto;
+    padding: 30px 0;
+    background-color: #ccc;
+    text-align: center;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 5px -5px 1px #D2D2D5;
+    -webkit-box-shadow: 5px -5px 1px #D2D2D5;
+    -moz-box-shadow: 5px -5px 1px #D2D2D5;
+    -ms-box-shadow: 5px -5px 1px #D2D2D5;
+    -o-box-shadow: 5px -5px 1px #D2D2D5;
+    background: -ms-linear-gradient(top, #fff,#0000ff);        /* IE 10 */
+    background:-moz-linear-gradient(top,#b8c4cb,#f6f6f8);       /*火狐*/
+    background:-webkit-gradient(linear, 50% 0%, 0% 100%,from(#b8c4cb), to(#f6f6f8));
+}
+.login-in{
+    line-height: 40px;
+}
+.login-label{
+    color: #595454;
+    display: inline-block;
+    width: 60px;
+}
+.login-username{
+    padding: 5px 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: none;
+}
+.login-password{
+    padding: 5px 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border:none;
+}
+.login-btn{
+    color: #595454;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -moz-transition:border 0.5s ease-in .1s;
+    -ms-transition:border 0.5s ease-in .1s;
+    -webkit-transition:border 0.5s ease-in .1s;
+    transition:border 0.5s ease-in .1s;
+    background: -ms-linear-gradient(top, #fff,#0000ff);        /* IE 10 */
+    background:-moz-linear-gradient(top,#b8c4cb,#f6f6f8);       /*火狐*/
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#b8c4cb), to(#f6f6f8));
+}
+.login-btn:hover{
+    border: 2px solid #b8c4cb;
+}

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nodejs+WebSocket</title>
+    <meta charset="utf-8">
+</head>
+<style>
+</style>
+
+<body style="display: none">
+    <section class='slides layout-regular template-default'>
+        <article>
+            <h1>
+                <p>Nodejs  +  WebSocket</p>
+                <p>Express  +  socket.io</p>
+            </h1>
+            <p>&nbsp;</p>
+            <p style="text-align:right;">程仁 2015-07-13 丁香园</p>
+        </article>
+        <article>
+            <h3>
+            什么是Nodejs?
+        </h3>
+            <br>
+            <div class="build">
+                <p>Node.js是一个可以快速构建网络服务及应用的平台。</p>
+                <h3><br/><br/>特点:</h3>
+            </div>
+            <ul class="build">
+                <li>
+                    纯javascript
+                </li>
+                <li>
+                    基于 Google V8
+                </li>
+                <li>
+                    事件驱动
+                </li>
+                <li>
+                    非阻塞 I/O 模型
+                </li>
+            </ul>
+        </article>
+        <article>
+            <h3>
+                阻塞与非阻塞——代码对比
+            </h3>
+            <section>
+                <pre>
+&lt;script type='text/javascript'&gt;
+//阻塞
+get_a_request();//从请求列队中得到一个请求
+handle_request();//处理这个请求，如：读写数据库，读文件，上床
+feedback();     //返回处理结果
+get_next_request();//从列队中获得下一个请求
+
+//非阻塞
+get_a_request();
+handle_request(function(){//处理这个请求
+        feedback(); //等到处理完成后，返回处理结果
+});
+get_next_request();//从列队中获得下一个请求
+
+&lt;/script&gt;
+
+</pre>
+            </section>
+        </article>
+        <article>
+            <h3>
+               Hello World!
+            </h3>
+            <section>
+                <pre>
+
+var http = require("http");
+http.createServer(function(request,response){
+
+   response.writeHead(200,{"Content-Type":"text/plain"});
+   response.end("Hello World\n");
+}).listen(3456);
+
+console.log("server running at 127.0.0.1:3456");
+
+
+</pre>
+            </section>
+        </article>
+        <article>
+            <h3>Express</h3>
+            <div class="build">
+                <p>
+                    <br>
+                    <br> 是一个简洁而灵活的 node.js Web应用框架
+                    <br/>
+                </p>
+                <p> 提供一系列强大特性帮助你创建各种Web应用</p>
+            </div>
+        </article>
+        <article>
+            <h3>Express结构</h3>
+            <p>
+                <img src='images/express1.png'>
+            </p>
+            <ul>
+                <li>app.js : 项目入口</li>
+                <li>node_modules : 存放项目的依赖库</li>
+                <li>package.json : 项目依赖配置及开发者信息</li>
+                <li>public : 静态文件如 css,js,img</li>
+                <li>routes : 路由文件</li>
+                <li>views : 页面模板引擎，jade、Ejs</li>
+            </ul>
+        </article>
+        <article>
+            <h3>WebSocket</h3>
+            <br>
+            <br>
+            <div class="build">
+                <p>WebSocket是一种基于TCP链接的双工的通讯方式</p>
+                <p>
+                    <br> 轮询(polling)。轮询是在特定的的时间间隔(time interval)（如每1秒），由浏览器对服务器发出HTTP request，然后由服务器返回最新的数据给客服端的浏览器。
+                </p>
+                <p>
+                    <br> 服务器可以
+                    <span class="red">主动</span>传送数据给客户端
+                </p>
+                <p>
+                    <br> 大大减少长连接的请求头大小
+                </p>
+            </div>
+        </article>
+        <article>
+            <h3>WebSocket与polling工作原理</h3>
+            <br>
+            <p><img src="images/websocket1.gif" style="height:330px;width: 350px" />
+                <img src="images/websocket2.gif" style="height: 330px" /></p>
+        </article>
+        <article>
+            <h3>WebSocket与polling性能比较</h3>
+            <br>
+            <p><img src="images/websocket3.gif"></p>
+        </article>
+        <article>
+            <h3>适用场景</h3>
+            <p>
+                <br> 适用于需要实时通信的场景
+                <br>如：实时信息监控，即时消息传递，网页游戏，股票信息推送等等
+            </p>
+            <br>
+            <br>
+            <br>
+            <h3>兼容情况</h3>
+            <table>
+                <tr>
+                    <th>
+                        浏览器
+                        <th>
+                            版本
+                            <tr>
+                                <td>
+                                    Chrome
+                                    <td>
+                                        14+
+                                        <tr>
+                                            <td>
+                                                firefox
+                                                <td>
+                                                    6+
+                                                    <tr>
+                                                        <td>
+                                                            IE
+                                                            <td>
+                                                                10+
+            </table>
+        </article>
+        <article>
+            <h3><br>socket.io<br></h3>
+            <div class="build">
+                <p>
+                    <br>
+                    <br>一个WebSocket库，包括了客户端的js和服务器端的nodejs
+                    <br>
+                </p>
+                <h3 class="black"><br><br><b>作用</b></h3>
+                <p>构建可以在不同浏览器和移动设备上使用的实时应用
+                    <br>
+                </p>
+                <p>自动根据浏览器从WebSocket、AJAX长轮询、Iframe流等等各种方式中选择最佳的方式来实现网络实时应用</p>
+            </div>
+        </article>
+        <article>
+            <article>
+                <h3>
+                    Hello World!
+                </h3>
+                <section>
+                    <pre>
+//server code
+var io = require('socket.io').listen(80);
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+</pre>
+                    <pre>
+//client code
+&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    var socket = io.connect('http://localhost');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+    });
+&lt;/script&gt;
+</pre>
+                </section>
+            </article>
+        </article>
+        <article>
+            <h1> Have A Try </h1>
+        </article>
+        <article>
+            <section>
+                <h3>Sender code</h3>
+                <pre>
+var socket = io.connect('http://192.168.1.100:3001');
+    $('#_a').click(function() {
+        socket.emit('a', { text: 'a' });
+    });
+    $('#_d').click(function() {
+        socket.emit('d', { text: 'd' });
+    });
+    $('#_w').click(function() {
+        socket.emit('w', { text: 'w' });
+    });
+    $('#_s').click(function() {
+        socket.emit('s', { text: 's' });
+    });
+    $('#_q').click(function() {
+        socket.emit('q', { text: 'q' });
+    });
+    $('#_e').click(function() {
+        socket.emit('e', { text: 'e' });
+    });
+</pre>
+            </section>
+        </article>
+        <article>
+            <h3>Server Code</h3>
+            <section>
+                <pre>
+//......
+io.sockets.on('connection', function (socket) {
+    socket.on('a', function (data) {
+        socket.broadcast.emit('a', { text: 'a' });
+    });
+    socket.on('d', function (data) {
+        socket.broadcast.emit('d', { text: 'd' });
+    });
+    socket.on('s', function (data) {
+        socket.broadcast.emit('s', { text: 's' });
+    });
+    socket.on('w', function (data) {
+        socket.broadcast.emit('w', { text: 'w' });
+    });
+    socket.on('q', function (data) {
+        socket.broadcast.emit('q', { text: 'q' });
+    });
+    socket.on('e', function (data) {
+        socket.broadcast.emit('e', { text: 'e' });
+    });
+</pre>
+            </section>
+        </article>
+        <article>
+            <section>
+                <h3>Receiver code</h3>
+                <pre>
+   var socket = io.connect('http://192.168.1.100:3001');
+    socket.on('w', function (data) {
+        android.translateZ(10);
+    });
+    socket.on('s', function (data) {
+        android.translateZ(-10);
+    });
+    socket.on('a', function (data) {
+        android.rotation.y += 0.25;
+    });
+    socket.on('d', function (data) {
+        android.rotation.y -= 0.25;
+    });
+    socket.on('q', function (data) {
+        android.translateY(+10);
+    });
+    socket.on('e', function (data) {
+        android.translateY(-10);
+    });
+</pre>
+            </section>
+        </article>
+        <article>
+            <h1>提问与交流</h1>
+            <p style="float:right;"><img style="margin-right: 100px;" src="./images/wenhao.jpg" /></p>
+        </article>
+        <article>
+            <h1>谢谢</h1>
+            <p>
+                <br>
+                <br>create&nbsp;&nbsp;&nbsp; PPT&nbsp;&nbsp;&nbsp; via&nbsp;&nbsp;&nbsp; <span class="blue">html5slides</span> </p>
+        </article>
+    </section>
+    <script type="text/javascript" src="./javascripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./javascripts/html5slides.js"></script>
+    <script type="text/javascript" src="./socket.io/socket.io.js">
+    </script>
+    <script>
+    $(function() {
+        var socket = io.connect('http://localhost:3000');
+
+        socket.on("next", function(data) {
+            nextSlide();
+            console.log("next");
+        });
+
+        socket.on("prev", function(data) {
+            prevSlide();
+            console.log("prev");
+        });
+    });
+    </script>
+</body>
+
+</html>
